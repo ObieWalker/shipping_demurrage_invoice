@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_09_11_024736) do
+ActiveRecord::Schema[7.2].define(version: 2025_09_11_232933) do
   create_table "bl", primary_key: "id_bl", id: :integer, charset: "latin1", force: :cascade do |t|
     t.integer "id_upload"
     t.datetime "date_upload", precision: nil

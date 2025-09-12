@@ -1,6 +1,6 @@
 class RefundRequest < ApplicationRecord
-  self.table_name = 'remboursement'
-  self.primary_key = 'id_remboursement'
+  self.table_name = "remboursement"
+  self.primary_key = "id_remboursement"
 
   alias_attribute :number, :numero_bl
 

@@ -10,7 +10,7 @@ module Demurrage
 
       BillOfLading.overdue_today.find_each do |bl|
         # Skip if any open invoice exists for this BL
-        if Invoice.where(numero_bl: bl.numero_bl).where.not(statut: 'paid').exists?
+        if Invoice.where(numero_bl: bl.numero_bl).where.not(statut: "paid").exists?
           skipped << bl.numero_bl
           next
         end
@@ -23,15 +23,15 @@ module Demurrage
         inv = Invoice.create!(
           reference: SecureRandom.alphanumeric(10).upcase,
           numero_bl: bl.numero_bl,
-          code_client: bl.customer&.code_client || bl.consignee_code || 'UNKNOWN',
-          nom_client: bl.customer&.nom || bl.consignee_name || 'UNKNOWN',
+          code_client: bl.customer&.code_client || bl.consignee_code || "UNKNOWN",
+          nom_client: bl.customer&.nom || bl.consignee_name || "UNKNOWN",
           montant_facture: amount_usd,
           montant_orig: amount_usd,
-          devise: 'USD',
-          statut: 'init',
+          devise: "USD",
+          statut: "init",
           date_facture: run_date,
           id_utilisateur: 0,
-          create_type_utilisateur: 'system',
+          create_type_utilisateur: "system",
           created_at: Time.current
         )
         created_ids << inv.id_facture

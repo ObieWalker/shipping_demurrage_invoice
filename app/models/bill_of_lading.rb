@@ -1,6 +1,6 @@
 class BillOfLading < ApplicationRecord
-  self.table_name = 'bl'
-  self.primary_key = 'id_bl'
+  self.table_name = "bl"
+  self.primary_key = "id_bl"
 
   alias_attribute :number, :numero_bl
   alias_attribute :arrival_at, :arrival_date
@@ -35,7 +35,7 @@ class BillOfLading < ApplicationRecord
     today = Date.current
     where.not(arrival_date: nil)
       .where.not(freetime: nil)
-      .select('*')
-      .where(Arel.sql("DATE(arrival_date) + INTERVAL freetime DAY = DATE('#{today}')"))
+      .select("*")
+      .where(Arel.sql("DATE(arrival_date) + INTERVAL freetime DAY = DATE("#{today}")"))
   }
 end

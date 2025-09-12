@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :invoice, class: 'Invoice' do
-    association :bill_of_lading 
+    association :bill_of_lading
     numero_bl { bill_of_lading.numero_bl }
     initialize_with { Invoice.new(attributes) }
     reference { "INV#{SecureRandom.hex(2)}" }

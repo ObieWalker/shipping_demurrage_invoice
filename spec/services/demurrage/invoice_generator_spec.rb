@@ -8,7 +8,7 @@ RSpec.describe Demurrage::InvoiceGenerator do
     _not_due = create(:bill_of_lading, arrival_date: 3.days.ago, freetime: 7)
 
     bl_skip = create(:bill_of_lading, arrival_date: 10.days.ago, freetime: 10, nbre_20pieds_sec: 1)
-    create(:invoice, numero_bl: bl_skip.numero_bl, statut: 'init')
+    create(:invoice, bill_of_lading: bl_skip, statut: 'init')
 
     result = service.call
 

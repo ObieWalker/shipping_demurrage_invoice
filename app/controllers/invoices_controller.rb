@@ -1,5 +1,4 @@
 class InvoicesController < ApplicationController
-
   def overdue
     invoices = Invoice.overdue.order(due_date: :asc, id_facture: :asc)
     render json: invoices.map(&:as_json)

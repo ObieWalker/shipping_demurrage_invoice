@@ -47,7 +47,7 @@ curl -X POST -s http://localhost:3000/invoices/generate | jq
 
 ## Design Decisions
 
--I took the approach of mapping the legacy tables with self.table_name and alias_attribute so that there are no destructive renames.
+- I took the approach of mapping the legacy tables with self.table_name and alias_attribute so that there are no destructive renames.
 
 - I enforced a non-NULL FK: facture.numero_bl → bl.numero_bl and then kept existing index.
 

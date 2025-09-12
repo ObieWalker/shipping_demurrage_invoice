@@ -36,6 +36,6 @@ class BillOfLading < ApplicationRecord
     where.not(arrival_date: nil)
       .where.not(freetime: nil)
       .select("*")
-      .where(Arel.sql("DATE(arrival_date) + INTERVAL freetime DAY = DATE("#{today}")"))
+      .where(Arel.sql("DATE(arrival_date) + INTERVAL freetime DAY = DATE('#{today}')"))
   }
 end

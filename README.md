@@ -1,24 +1,54 @@
-# README
+# shipurrage
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a shipping application that handles cargo as they arrive and processes the demurrage costs. 
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
+Clone the app to a folder and carry out the following instructions.
 
-* System dependencies
+```bash
+bin/setup or bundle install
+```
 
-* Configuration
+Configure DB, import legacy schema (test_schema.sql), run migration: 
 
-* Database creation
+```bash
+rails db:migrate
+```
 
-* Database initialization
+(Optional) rails db:seed
 
-* How to run the test suite
+Then Run
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+rails s
+```
 
-* Deployment instructions
+## Tests
 
-* ...
+```bash
+bundle exec rspec
+```
+
+## API
+
+### For overdue invoices:
+
+```bash
+curl -s http://localhost:3000/invoices/overdue | jq
+```
+
+
+### To generate invoices:
+
+```bash
+curl -X POST -s http://localhost:3000/invoices/generate | jq
+```
+
+## Design Decisions
+
+-I took the approach of mapping the legacy tables with self.table_name and alias_attribute so that there are no destructive renames.
+
+- I enforced a non-NULL FK: facture.numero_bl → bl.numero_bl and then kept existing index.
+
+- I skipped BLs with any unpaid invoice i.e. zero-container BLs ignored.

@@ -1,6 +1,6 @@
 class Invoice < ApplicationRecord
-  self.table_name = 'facture'
-  self.primary_key = 'id_facture'
+  self.table_name = "facture"
+  self.primary_key = "id_facture"
 
   alias_attribute :amount, :montant_facture
   alias_attribute :currency, :devise
@@ -15,8 +15,8 @@ class Invoice < ApplicationRecord
 
   before_validation :ensure_due_date
 
-  scope :unpaid, -> { where.not(statut: 'paid') }
-  scope :overdue, -> { unpaid.where('due_date < ?', Date.current) }
+  scope :unpaid, -> { where.not(statut: "paid") }
+  scope :overdue, -> { unpaid.where("due_date < ?", Date.current) }
 
   # Set 15 days fixed term
   def ensure_due_date
